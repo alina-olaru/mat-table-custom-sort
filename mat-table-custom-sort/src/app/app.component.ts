@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 
 export interface Customer{
+  [key: string]: any;
   firstName: string;
   lastName: string;
   address: string;
@@ -67,6 +68,9 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     setTimeout(() => {
     this.dataSource.sort = this.sort;
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      return (item[property].toLocaleLowerCase());
+};
     });
   }
 
